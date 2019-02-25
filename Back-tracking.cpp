@@ -89,20 +89,6 @@ int checkgrid(int row,int column,int num)
       }
     }
     return 1;
-	
-	
-//  if(row%3==0 && column%3==0){
-//    for(int r=0;r<3;r++){
-//      for(int c=0;c<3;c++)
-//	  {
-//        if(board[row+r][column+c]==num)
-//		{
-//          return 0;
-//        }
-//      }
-//    }
-//    return 1;
-//  }
 }
 
 void display(){
