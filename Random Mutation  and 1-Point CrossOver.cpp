@@ -175,7 +175,7 @@ int isrow(int board[n][n] )
 
 int gridcheck(int board[n][n],int row,int col)
 {
-//      cout<<'\n'<<row<<col;
+
         int gridcount=0;
         int rm=row+3;
         int cm=col+3;
@@ -208,7 +208,6 @@ int isgrid(int board[n][n])
                 {
 
                 countg+=gridcheck(board,i,j);
-        //      cout<<"countg"<<countg;
         }
         }
         return countg;
@@ -218,9 +217,9 @@ int isgrid(int board[n][n])
 struct det fittness(int board[n][n] )
 {
         int rowscore=0,colscore=0,gridscore=0;
-        rowscore+=isrow(board);                                                 //81
-        colscore+=iscol(board);                                                 //81
-        gridscore+=isgrid(board);                      //81
+        rowscore+=isrow(board);           //81
+        colscore+=iscol(board);           //81
+        gridscore+=isgrid(board);         //81
 
         s.rowmark=rowscore;
         s.colmark=colscore;
@@ -252,7 +251,6 @@ void generation(int board[n][n],int fillup[n][n])
 
 
 struct det r;
-        //do
         {for(int i=0;i<n;i++)
         {
                 for(int j=0;j<n;j++)
@@ -264,9 +262,7 @@ struct det r;
         for(int q=0;q<10;q++)
         {
         for(int i=0;i<n;i++)
-        {//int norepeat[n]={0,0,0,0,0,0,0,0,0};
-
-
+        {
                 for(int j=0;j<n;j++)
                 {
 
@@ -275,7 +271,6 @@ struct det r;
                         if(fillup[i][j]!=1)
                         {
                                 dup[i][j]=x;
-                                //norepeat[x]=1;
 
 
 
@@ -289,8 +284,7 @@ struct det r;
         }
         scorearray[q]=fittness(dup);
     }
-         //r=fittness(dup);
-}//while(r.colmark!=81&&r.rowmark!=81&&r.gridmark!=81);
+}
 out(space);     
 }
 
@@ -320,33 +314,16 @@ int main()
 
 
 
-
-
-        /**/
-
-
-
-                                          /*
-                                          3 1 6 5 7 8 4 9 2
-  5 2 9 1 3 4 7 6 8
-  4 8 7 6 2 9 5 3 1
-  2 6 3 4 1 5 9 8 7
-  9 7 4 8 6 3 1 2 5
-  8 5 1 7 9 2 6 4 3
-  1 3 8 9 4 7 2 5 6
-  6 9 2 3 5 1 8 7 4
-  7 4 5 2 8 6 3 1 9
-  {{3, 1, 6, 5, 7, 8, 4, 9, 2},
-                      {5, 2, 9, 1, 3, 4, 7, 6, 8},
-                      {4, 8, 7, 6, 2, 9, 5, 3, 1},
-                      {2, 6, 3, 4, 1, 5, 9, 8, 7},
-                      {9, 7, 4, 8, 6, 3, 1, 2, 5},
-                      {8, 5, 1, 7, 9, 2, 6, 4, 3},
-                      {1, 3, 8, 9, 4, 7, 2, 5, 6},
-                      {6, 9, 2, 3, 5, 1, 8, 7, 4},
-                      {7, 4, 5, 2, 8, 6, 3, 1, 9}
-                                          };
-  */
+//  {{3, 1, 6, 5, 7, 8, 4, 9, 2},
+//                      {5, 2, 9, 1, 3, 4, 7, 6, 8},
+//                      {4, 8, 7, 6, 2, 9, 5, 3, 1},
+//                      {2, 6, 3, 4, 1, 5, 9, 8, 7},
+//                      {9, 7, 4, 8, 6, 3, 1, 2, 5},
+//                      {8, 5, 1, 7, 9, 2, 6, 4, 3},
+//                      {1, 3, 8, 9, 4, 7, 2, 5, 6},
+//                      {6, 9, 2, 3, 5, 1, 8, 7, 4},
+//                      {7, 4, 5, 2, 8, 6, 3, 1, 9}
+//                                          };
 
 
         int fillup[n][n];
@@ -360,14 +337,7 @@ int main()
                         fillup[i][j]=0;
                 }
         }
-
-
-
-
-
-
-        /*struct det r=fittness(board);
-        cout<<'\n'<<r.rowmark<<'\n'<<r.colmark<<'\n'<<r.gridmark;*/
+        
         generation(board,fillup);
         int min1,min2;
 
@@ -381,7 +351,6 @@ int main()
 
          min1=min2=scorearray[0].sum;
         int line1=0,line2=0;
-        //int fformin=0;
         for(int i=0;i<10;i++)
         {
                 cout<<"\n"<<scorearray[i].rowmark<<'\t'<<scorearray[i].colmark<<'\t'<<scorearray[i].gridmark<<'\t'<<scorearray[i].sum<<'\n';
@@ -392,13 +361,11 @@ int main()
                 min1=scorearray[i].sum;
                 line2=line1;
                 line1=i;
-                //fformin=1;
             }
             else if(scorearray[i].sum<min2&&min2!=min1)
             {
                 min2=scorearray[i].sum;
                 line2=i;
-            //  fformin=1;
                 }
 
         }
@@ -409,49 +376,8 @@ int main()
                 min2=scorearray[tie].sum;
                 line2=tie;
         }while(line1==line2);
-        /*if(fformin==0||line1==line2)
-        {
-                sort(summin,summin+10);
-                int unique1=summin[0];
-                for(int i=1;i<10&&fformin==0;i++)
-                {
-                        if(summin[i]!=unique1)
-                        {
-                                unique1=i;
-                                fformin=1;
-                                }       
-                }
-                line2=unique1;
-                min2=summin[line2];
-
-        }*/
-
-
-
         cout<<"min sum  "<<min1<<'\t'<<line1<<'\t'<<min2<<'\t'<<line2<<'\n';
-        /*for(int i=0;i<n;i++)
-        {
-                for(int j=0;j<n;j++)
-                {
-                        cout<<space[line1][i][j];
-                }
-                cout<<'\n';
-        }
-        cout<<'\n';
-        for(int i=0;i<n;i++)
-        {
-                for(int j=0;j<n;j++)
-                {
-                        cout<<space[line2][i][j];
-                }
-                cout<<'\n';
-        }*/
-
-
-
-
-
-
+        
                 for(int i=0;i<n;i++)
                 {
                         for(int j=0;j<n;j++)
