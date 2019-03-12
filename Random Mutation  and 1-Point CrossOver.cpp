@@ -17,8 +17,6 @@ int p1[n][n],p2[n][n],p3[n][n],summin[10];
 struct det fittness(int [][n]);
 
 
-
-
 void copy(int k)
 {
 
@@ -62,8 +60,6 @@ void mutaterow(int p1[n][n],int row,int fillup[n][n])
 
 }
 
-
-
 void crossrow(int p1[n][n],int p2[n][n],int row)
 {
         int x=rand()%10;
@@ -77,15 +73,12 @@ void crossrow(int p1[n][n],int p2[n][n],int row)
         }
 }
 
-
-
-
-
 void mutation(int p1[n][n],int k,int fillup[n][n])
 {
 for(int i=0;i<n;i++)
 {
-        mutaterow(p1,i,fillup);
+		int ran = rand()%9;
+        mutaterow(p1,ran,fillup);
 
 }
 for(int i=0;i<n;i++)
@@ -102,16 +95,16 @@ temparray[k]=fittness(p3);
 
 void crossover(int p1[n][n],int p2[n][n],int k)
 {
-        for(int i=0;i<n;i++)
-        {
-                crossrow(p1,p2,i);
-        }
-        for(int i=0;i<n;i++)
-        {
-                for(int j=0;j<n;j++)
-                spare[k][i][j]=p3[i][j];
-        }
-        temparray[k]=fittness(p3);
+    for(int i=0;i<n;i++)
+    {
+        crossrow(p1,p2,i);
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+         spare[k][i][j]=p3[i][j];
+    }
+    temparray[k]=fittness(p3);
 }
 
 
@@ -301,9 +294,9 @@ out(space);
 int main()
 {   srand(time(NULL));
         // 0 means unassigned cells
-        int board[n][n] ={{0, 1, 6, 5, 7, 8, 4, 9, 2},
+        int board[n][n] ={{0, 1, 6, 5, 7, 8, 0, 9, 2},
                       {5, 0, 9, 1, 3, 0, 7, 6, 8},
-                      {4, 8, 7, 6, 2, 9, 0, 3, 1},
+                      {4, 8, 7, 0, 2, 9, 0, 3, 1},
                       {2, 6, 3, 0, 1, 5, 9, 8, 7},
                       {9, 7, 4, 8, 0, 3, 1, 2, 5},
                       {8, 5, 1, 7, 9, 2, 6, 4, 3},
@@ -314,7 +307,7 @@ int main()
 
 
 
-//  {{3, 1, 6, 5, 7, 8, 4, 9, 2},
+//  					{{3, 1, 6, 5, 7, 8, 4, 9, 2},
 //                      {5, 2, 9, 1, 3, 4, 7, 6, 8},
 //                      {4, 8, 7, 6, 2, 9, 5, 3, 1},
 //                      {2, 6, 3, 4, 1, 5, 9, 8, 7},
@@ -343,10 +336,10 @@ int main()
 
 
 
-        for(int y=0;y<1000;y++)
+        for(int y=0;y<2000;y++)
         {
 
-                cout<<'\n';
+                cout<< "Generation : " << y <<"\n";
 
 
          min1=min2=scorearray[0].sum;
@@ -425,34 +418,8 @@ for(int k=2;k<10;k++)
 
 }
 
-/*cout<<"spare"<<'\n';
-for(int k=0;k<10;k++)
-{
-        for(int i=0;i<n;i++)
-        {
-                for(int j=0;j<n;j++)
-                {
-                        cout<<spare[k][i][j];
-                }cout<<'\n';
-        }
-        cout<<'\n';
-}
-for(int i=0;i<10;i++)
-{
-        cout<<temparray[i].rowmark<<'\t'<<temparray[i].colmark<<'\t'<<temparray[i].gridmark<<'\t'<<temparray[i].sum<<'\n';
-}*/
-
-
-
-
-
 cout<<'\n'<<"determined\n";
 determine();
-
-
-
-
-
 
 
 for(int k=0;k<10;k++)
@@ -470,10 +437,10 @@ for(int q1=0;q1<10;q1++)
 {
         if(scorearray[q1].sum==243 &&scorearray[q1].rowmark==81 &&scorearray[q1].colmark==81 &&scorearray[q1].gridmark==81)
         {	
-                cout<<"---------GOT IT ---------------";
-                cout<<'\n';
+                cout<<"---------GOT IT ---------------" << "\n";
+                cout<< "Generation is = " << y<< "\n";
                 for(int i =0;i<n;i++)
-                {
+                { 
                 	for(int j=0;j<n;j++)
                 	{
                 		cout<<space[q1][i][j];
@@ -486,11 +453,5 @@ for(int q1=0;q1<10;q1++)
 }                       
 
 }
-
-
-
-
-
-
         return 0;
 }
