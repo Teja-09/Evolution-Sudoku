@@ -83,7 +83,7 @@ int checkgrid(int row,int column,int num)
       for(int c=0;c<3;c++)
 	  {
         if(board[row+r][column+c]==num)
-		{
+		    {
           return 0;
         }
       }
