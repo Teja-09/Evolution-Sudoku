@@ -4,10 +4,10 @@ using namespace std;
 
 struct det
 {
-        int rowmark;
-        int colmark;
-        int gridmark;
-        int sum;
+    int rowmark;
+    int colmark;
+    int gridmark;
+    int sum;
 }s;
 struct det scorearray[10];
 struct det temparray[10];
